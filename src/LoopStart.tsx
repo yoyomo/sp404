@@ -13,7 +13,8 @@ export const LoopStart = () => {
 
 
   return (
-    <div>
+    <div className="flex flex-col justify-center items-center text-center gap-y-2">
+        <h1 className="text-3xl font-bold m-2"> SP 404 Perfect Loop Start Calculator:</h1>
       BPM: <NumberInput value={bpm} onUpdate={setBPM} />
       Sample Length: <NumberInput value={sampleLength} onUpdate={setSampleLength} />
       Number of Bars: <NumberInput value={numberOfBars} onUpdate={setNumberOfBars} />
