@@ -2,7 +2,7 @@ import React, {useMemo, useState} from 'react';
 import {getLoopStart} from "./utils";
 import {NumberInput} from "./NumberInput";
 
-function App() {
+export const LoopStart = () => {
   const [bpm, setBPM] = useState(90);
   const [sampleLength, setSampleLength] = useState(864000);
   const [numberOfBars, setNumberOfBars] = useState(4);
@@ -22,5 +22,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
