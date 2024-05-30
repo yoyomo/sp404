@@ -1,6 +1,6 @@
 import React, {useMemo, useState} from 'react';
-import {NumberInput} from "@mantine/core";
 import {getLoopStart} from "./utils";
+import {NumberInput} from "./NumberInput";
 
 function App() {
   const [bpm, setBPM] = useState(90);
@@ -14,9 +14,9 @@ function App() {
 
   return (
     <div>
-      <NumberInput value={bpm} onChange={(v) => setBPM(+v)} />
-      <NumberInput value={sampleLength} onChange={(v) => setSampleLength(+v)} />
-      <NumberInput value={numberOfBars} onChange={(v) => setNumberOfBars(+v)} />
+      <NumberInput value={bpm} onUpdate={setBPM} />
+      <NumberInput value={sampleLength} onUpdate={setSampleLength} />
+      <NumberInput value={numberOfBars} onUpdate={setNumberOfBars} />
 
       <div>Loop Start: {loopStart}</div>
     </div>
