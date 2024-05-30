@@ -28,12 +28,11 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build
-
     - name: Cache build folder
       uses: actions/upload-artifact@v3
       with:
         name: github-pages
-        path: ${{ runner.temp }}/artifact.tar
+        path: build
 
   deploy:
     needs: build
