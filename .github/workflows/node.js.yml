@@ -23,7 +23,7 @@ jobs:
     - run: npm ci
     - run: npm run build
     - name: Cache build folder
-      uses: actions/upload-pages-artifact@v1
+      uses: actions/upload-pages-artifact@v3
       with:
         name: github-pages
         path: build
