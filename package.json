@@ -15,7 +15,7 @@
   "homepage": ".",
   "scripts": {
     "start": "react-scripts start",
-    "build": "BUILD_PATH='./docs' react-scripts build"
+    "build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": [
