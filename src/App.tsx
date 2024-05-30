@@ -14,9 +14,9 @@ function App() {
 
   return (
     <div>
-      <NumberInput value={bpm} onUpdate={setBPM} />
-      <NumberInput value={sampleLength} onUpdate={setSampleLength} />
-      <NumberInput value={numberOfBars} onUpdate={setNumberOfBars} />
+      BPM: <NumberInput value={bpm} onUpdate={setBPM} />
+      Sample Length: <NumberInput value={sampleLength} onUpdate={setSampleLength} />
+      Number of Bars: <NumberInput value={numberOfBars} onUpdate={setNumberOfBars} />
 
       <div>Loop Start: {loopStart}</div>
     </div>
