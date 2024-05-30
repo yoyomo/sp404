@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
-import { getLoopStart, getMaxBars } from "./utils";
 import { NumberInput } from "./NumberInput";
+import { getLoopStart, getMaxBars } from "./utils";
 
 export const LoopStart = () => {
   const [bpm, setBPM] = useState(90);
@@ -20,7 +20,7 @@ export const LoopStart = () => {
       <h1 className="text-3xl font-bold m-2"> SP 404 Perfect Loop Start Calculator:</h1>
       BPM: <NumberInput defaultValue={bpm} onUpdate={setBPM} />
       Sample Length: <NumberInput defaultValue={sampleLength} onUpdate={setSampleLength} />
-      Number of Bars (max. {maxBars}): <NumberInput defaultValue={numberOfBars} onUpdate={setNumberOfBars} max={maxBars}/>
+      Number of Bars (max. {maxBars}): <NumberInput defaultValue={numberOfBars} onUpdate={setNumberOfBars} max={maxBars} />
       <label>Loop Start:</label>
       <div className="text-lg">{loopStart}</div>
     </div>
