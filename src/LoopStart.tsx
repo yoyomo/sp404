@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { getLoopStart } from "./utils";
+import { getLoopStart, getMaxBars } from "./utils";
 import { NumberInput } from "./NumberInput";
 
 export const LoopStart = () => {
@@ -11,12 +11,16 @@ export const LoopStart = () => {
     getLoopStart(bpm, sampleLength, numberOfBars)
     , [bpm, sampleLength, numberOfBars]);
 
+  const maxBars = useMemo(() =>
+    getMaxBars(bpm, sampleLength)
+    , [bpm, sampleLength]);
+
   return (
     <div className="flex flex-col justify-center items-center text-center gap-y-2 bg-gray-100">
       <h1 className="text-3xl font-bold m-2"> SP 404 Perfect Loop Start Calculator:</h1>
       BPM: <NumberInput value={bpm} onUpdate={setBPM} />
       Sample Length: <NumberInput value={sampleLength} onUpdate={setSampleLength} />
-      Number of Bars: <NumberInput value={numberOfBars} onUpdate={setNumberOfBars} />
+      Number of Bars (max. {maxBars}): <NumberInput value={numberOfBars} onUpdate={setNumberOfBars} max={maxBars}/>
       <label>Loop Start:</label>
       <div className="text-lg">{loopStart}</div>
     </div>

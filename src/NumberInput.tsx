@@ -1,5 +1,4 @@
 import {NumberInput as MantineNumberInput, NumberInputProps as MantineNumberInputProps} from "@mantine/core";
-import React from "react";
 
 interface NumberInputProps extends MantineNumberInputProps {
     onUpdate: (value: number) => void;
