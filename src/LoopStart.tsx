@@ -1,3 +1,4 @@
+import { Switch } from '@mantine/core';
 import { useMemo, useState } from 'react';
 import { NumberInput } from "./NumberInput";
 import { getLoopStart, getMaxBars } from "./utils";
@@ -7,20 +8,34 @@ export const LoopStart = () => {
   const [sampleLength, setSampleLength] = useState(864000);
   const [numberOfBars, setNumberOfBars] = useState(4);
 
-  const loopStart = useMemo(() =>
-    getLoopStart(bpm, sampleLength, numberOfBars)
-    , [bpm, sampleLength, numberOfBars]);
+  const [sampleLengthMode, setSampleLengthMode] = useState(true);
+  const [startPoint, setStartPoint] = useState(0);
+  const [endPoint, setEndPoint] = useState(sampleLength);
 
-  const maxBars = useMemo(() =>
+
+  const loopStart = useMemo(() => sampleLengthMode ?
+    getLoopStart(bpm, sampleLength, numberOfBars) :
+    getLoopStart(bpm, endPoint - startPoint, numberOfBars) + startPoint
+    , [bpm, sampleLength, numberOfBars, sampleLengthMode, startPoint, endPoint]);
+
+  const maxBars = useMemo(() => sampleLengthMode ?
     getMaxBars(bpm, sampleLength)
-    , [bpm, sampleLength]);
+    : getMaxBars(bpm, endPoint - startPoint)
+    , [bpm, sampleLength, sampleLengthMode, startPoint, endPoint]);
 
   return (
     <div className="flex flex-col justify-center items-center text-center gap-y-2 bg-gray-100">
       <h1 className="text-3xl font-bold m-2"> SP 404 Perfect Loop Start Calculator:</h1>
-      BPM: <NumberInput defaultValue={bpm} onUpdate={setBPM} />
-      Sample Length: <NumberInput defaultValue={sampleLength} onUpdate={setSampleLength} />
-      Number of Bars (max. {maxBars}): <NumberInput defaultValue={numberOfBars} onUpdate={setNumberOfBars} max={maxBars} />
+      <NumberInput defaultValue={bpm} onUpdate={setBPM} label="BPM:" />
+      <Switch size="lg" onLabel="Sample Length" offLabel="Start/End" color="orange" checked={sampleLengthMode}
+        onChange={(event) => setSampleLengthMode(event.currentTarget.checked)} />
+      {sampleLengthMode ?
+        <NumberInput defaultValue={sampleLength} onUpdate={setSampleLength} label="Sample Length:" />
+        : <div>
+          <NumberInput defaultValue={startPoint} onUpdate={setStartPoint} label="Start:" />
+          <NumberInput defaultValue={endPoint} onUpdate={setEndPoint} label="End:" />
+        </div>}
+      <NumberInput defaultValue={numberOfBars} onUpdate={setNumberOfBars} max={maxBars} label={`Number of Bars (max. ${maxBars}):`} />
       <label>Loop Start:</label>
       <div className="text-lg">{loopStart}</div>
     </div>
