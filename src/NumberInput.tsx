@@ -1,13 +1,23 @@
-import { NumberInput as MantineNumberInput, NumberInputProps as MantineNumberInputProps } from "@mantine/core";
+import {
+  NumberInput as MantineNumberInput,
+  NumberInputProps as MantineNumberInputProps,
+} from "@mantine/core";
 
 interface NumberInputProps extends MantineNumberInputProps {
-    onUpdate: (value: number) => void;
+  onUpdate: (value: number) => void;
 }
 
-export const NumberInput = (props: NumberInputProps) => {
+export const NumberInput = ({ onUpdate, ...props }: NumberInputProps) => {
+  const onChange = (value: string | number) => onUpdate(+value);
 
-    const onChange = (value: string | number) => props.onUpdate(+value)
-
-    return <MantineNumberInput className="" onChange={onChange} allowNegative={false} hideControls allowDecimal={false} {...props} />
-
-}
+  return (
+    <MantineNumberInput
+      className=""
+      onChange={onChange}
+      allowNegative={false}
+      hideControls
+      allowDecimal={false}
+      {...props}
+    />
+  );
+};
